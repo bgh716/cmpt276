@@ -2,7 +2,7 @@ var board = document.getElementById("grid");
 var rIndex;
 var cIndex;
 var swit = 0;
-var user = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+var user =  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -47,8 +47,8 @@ function check() {
     return true;
 }
 //contribute onclick trait for every single index
-for (var i = 0; i < board.rows.length; i++) {
-    for (var j = 0; j < board.rows[i].cells.length; j++) {
+for (var i = 1; i < board.rows.length; i++) {
+    for (var j = 1; j < board.rows[i].cells.length; j++) {
         board.rows[i].cells[j].onclick = board_clicked;
     }
 }
