@@ -1,0 +1,39 @@
+#grid {
+    background-color: white;
+    border: 1px solid black;
+    position: relative;
+}
+
+table {
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+td {
+    min-width:35px;
+    height:35px;
+    padding: 2px;
+}
+
+.side{
+    color:black;
+    background-color:white;
+    text-align:right;
+    padding-left:5px;
+    padding-right:5px;
+    border-right:3px solid black;
+}
+
+.up {
+    color: black;
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid black;
+}
+
+.marked {
+    background-color: black;
+    border-color:white;
+}
