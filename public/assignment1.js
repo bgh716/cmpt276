@@ -59,8 +59,13 @@ function board_clicked() {
         cIndex = this.cellIndex;
 
         if (user[rIndex][cIndex] && this.classList && this.classList.contains("marked")) {
-            user[rIndex][cIndex] = 0;
+            user[rIndex][cIndex] = 2;
             this.classList.remove("marked");
+            this.classList.add("crossed");
+        }
+        else if (user[rIndex][cIndex]==2 && this.classList && this.classList.contains("crossed")) {
+            this.classList.remove("crossed");
+            user[rIndex][cIndex] = 0;
         }
         else {
             user[rIndex][cIndex] = 1;
@@ -79,8 +84,11 @@ function reset_clicked () {
     for (var i = 0; i < board.rows.length; i++) {
         for (var j = 0; j < board.rows[i].cells.length; j++) {
             user[i][j] = 0;
-            if (board.rows[i].cells[j].classList) {
+            if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("marked")) {
                 board.rows[i].cells[j].classList.remove("marked");
+            }
+            else if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("crossed")) {
+                board.rows[i].cells[j].classList.remove("crossed");
             }
         }
     }
@@ -103,7 +111,14 @@ function reveal_clicked() {
                 if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("marked") && !(answer[i][j])) {
                     board.rows[i].cells[j].classList.remove("marked");
                 }
-                else if (!(board.rows[i].cells[j].classList.contains("marked")) && answer[i][j]) {
+                else if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("crossed") && !(answer[i][j])) {
+                    board.rows[i].cells[j].classList.remove("crossed");
+                }
+                else if (board.rows[i].cells[j].classList && !(board.rows[i].cells[j].classList.contains("marked")) && !(board.rows[i].cells[j].classList.contains("crossed")) && answer[i][j]) {
+                    board.rows[i].cells[j].classList.add("marked");
+                }
+                else if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("crossed") && answer[i][j]) {
+                    board.rows[i].cells[j].classList.remove("crossed");
                     board.rows[i].cells[j].classList.add("marked");
                 }
             }
@@ -115,8 +130,15 @@ function reveal_clicked() {
                 if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("marked") && !(user[i][j])) {
                     board.rows[i].cells[j].classList.remove("marked");
                 }
-                else if (!(board.rows[i].cells[j].classList.contains("marked")) && user[i][j]) {
+                else if (board.rows[i].cells[j].classList && !(board.rows[i].cells[j].classList.contains("marked")) && user[i][j]==1) {
                     board.rows[i].cells[j].classList.add("marked");
+                }
+                else if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("marked") && user[i][j] == 2) {
+                    board.rows[i].cells[j].classList.remove("marked");
+                    board.rows[i].cells[j].classList.add("crossed");
+                }
+                else if (board.rows[i].cells[j].classList && !(board.rows[i].cells[j].classList.contains("crossed")) && user[i][j] == 2) {
+                    board.rows[i].cells[j].classList.add("crossed");
                 }
             }
         }
@@ -135,10 +157,17 @@ function solve_clicked() {
     for (var i = 0; i < board.rows.length; i++) {
         for (var j = 0; j < board.rows[i].cells.length; j++) {
             user[i][j] = answer[i][j];
-            if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("marked") && !(answer[i][j])) {
+            if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("crossed")) {
+                board.rows[i].cells[j].classList.remove("crossed");
+                if(answer[i][j])
+                {
+                    board.rows[i].cells[j].classList.add("marked");
+                }
+            }
+            else if (board.rows[i].cells[j].classList && board.rows[i].cells[j].classList.contains("marked") && !(answer[i][j])) {
                 board.rows[i].cells[j].classList.remove("marked");
             }
-            else if (!(board.rows[i].cells[j].classList.contains("marked")) && answer[i][j]) {
+            else if (board.rows[i].cells[j].classList && !(board.rows[i].cells[j].classList.contains("marked")) && answer[i][j]) {
                 board.rows[i].cells[j].classList.add("marked");
             }
         }

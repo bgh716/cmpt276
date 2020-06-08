@@ -37,3 +37,9 @@ td {
     background-color: black;
     border-color:white;
 }
+
+.crossed {
+    background-image: url("cross.png");
+    background-position:center;
+    background-size:12px;
+}
