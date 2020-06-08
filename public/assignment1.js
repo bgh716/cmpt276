@@ -52,7 +52,7 @@ for (var i = 1; i < board.rows.length; i++) {
         board.rows[i].cells[j].onclick = board_clicked;
     }
 }
-
+//1st click=marking 2nd click=checking 3rd click=clean
 function board_clicked() {
     if (!swit) {
         rIndex = this.parentElement.rowIndex;
@@ -79,7 +79,7 @@ function board_clicked() {
 }
 
 document.getElementById("reset").onclick = reset_clicked;
-
+//reset the board
 function reset_clicked () {
     for (var i = 0; i < board.rows.length; i++) {
         for (var j = 0; j < board.rows[i].cells.length; j++) {
