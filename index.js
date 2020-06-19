@@ -40,10 +40,9 @@ app.post('/adduser', (req, res) => {
             res.end(error);
         else if(result[0] && result[0]['id']==id){
             window.alert('id already taken');
-            res.end();
         }
         else{
-            res.send(`name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
+            res.send(`id: ${id}, name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
             var insertUsersQuery=`INSERT INTO usr (id, name, age, weight, height, type) VALUES (`+id+`,`+name+`,`+age+`,`+weight+`,`+height+`,`+type+`)`
             var values=[name,age,weight,height,type];
             pool.query(insertUsersQuery, (error,result)=>{
