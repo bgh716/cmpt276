@@ -40,7 +40,6 @@ app.post('/adduser', (req, res) => {
     pool.query(insertUsersQuery,values, (error,result)=>{
         if(error)
             res.end(error);
-        res.redirect('/person.html');
     })
 });
 app.get('/users/:id', (req, res) => {
