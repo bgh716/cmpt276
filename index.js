@@ -34,7 +34,7 @@ app.post('/adduser', (req, res) => {
     var height = req.body.height;
     var type = req.body.type;
     res.send(`name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
-    var insertUsersQuery=`INSERT INTO usr (name, age, weight, height, type) VALUES ($1,$2,$3,$4,$5) returining *`
+    var insertUsersQuery=`INSERT INTO usr (name, age, weight, height, type) VALUES (?,?,?,?,?)`
     var values=[name,age,weight,height,type];
     pool.query(insertUsersQuery,values, (error,result)=>{
         if(error)
