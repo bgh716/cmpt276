@@ -39,7 +39,6 @@ app.post('/adduser', (req, res) => {
     pool.query(insertUsersQuery, (error,result)=>{
         if(error)
             res.end(error);
-        res.redirect('back');
     })
 });
 
