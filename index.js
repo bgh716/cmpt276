@@ -40,7 +40,6 @@ app.post('/adduser', (req, res) => {
         if(error)
             res.end(error);
     })
-    res.redirect("/")
 });
 
 
