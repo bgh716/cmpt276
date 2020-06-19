@@ -26,7 +26,7 @@ app.get('/database', (req, res) => {
     })
 
 });
-app.post('/', (req, res) => {
+app.post('/adduser', (req, res) => {
     console.log("post request for /adduser");
     var name = req.body.name;
     var age = req.body.age;
@@ -39,6 +39,7 @@ app.post('/', (req, res) => {
     pool.query(insertUsersQuery,values, (error,result)=>{
         if(error)
             res.end(error);
+        res.redirect('/person.html');
     })
 });
 app.get('/users/:id', (req, res) => {
