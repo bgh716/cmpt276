@@ -28,18 +28,31 @@ app.get('/database', (req, res) => {
 });
 app.post('/adduser', (req, res) => {
     console.log("post request for /adduser");
+    var id = req.body.id;
     var name = req.body.name;
     var age = req.body.age;
     var weight = req.body.weight;
     var height = req.body.height;
     var type = req.body.type;
-    res.send(`name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
-    var insertUsersQuery=`INSERT INTO usr (name, age, weight, height, type) VALUES (`+name+`,`+age+`,`+weight+`,`+height+`,`+type+`)`
-    var values=[name,age,weight,height,type];
-    pool.query(insertUsersQuery, (error,result)=>{
+    var searchUserQuery=`SELECT * FROM usr WHERE id=`+id+``;
+    pool.query(searchUserQuery, (error,result)=>{
         if(error)
             res.end(error);
+        else if(result[0] && result[0]['id']==id){
+            window.alert('id already taken');
+            res.end();
+        }
+        else{
+            res.send(`name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
+            var insertUsersQuery=`INSERT INTO usr (id, name, age, weight, height, type) VALUES (`+id+`,`+name+`,`+age+`,`+weight+`,`+height+`,`+type+`)`
+            var values=[name,age,weight,height,type];
+            pool.query(insertUsersQuery, (error,result)=>{
+                if(error)
+                    res.end(error);
+            })
+        }
     })
+
 });
 
 
