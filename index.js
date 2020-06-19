@@ -26,14 +26,14 @@ app.get('/database', (req, res) => {
     })
 
 });
-app.post('/adduser', (req, res) => {
+app.post('/', (req, res) => {
     console.log("post request for /adduser");
     var name = req.body.name;
     var age = req.body.age;
     var weight = req.body.weight;
     var height = req.body.height;
     var type = req.body.type;
-    res.send(`name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
+    //res.send(`name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
     var insertUsersQuery=`INSERT INTO usr (name, age, weight, height, type) VALUES (?,?,?,?,?)`
     var values=[name,age,weight,height,type];
     pool.query(insertUsersQuery,values, (error,result)=>{
