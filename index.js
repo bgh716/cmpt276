@@ -30,10 +30,16 @@ app.post('/adduser', (req, res) => {
     console.log("post request for /adduser");
     var name = req.body.name;
     var age = req.body.age;
-    var size = req.body.size;
+    var weight = req.body.weight;
     var height = req.body.height;
     var type = req.body.type;
-    res.send(`username: ${name}, age: ${age}, size: ${size}, height: ${height}, type: ${type}`);
+    res.send(`name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
+    var insertUsersQuery=`INSERT INTO usr (name, age, weight, height, type) VALUES ($1,$2,$3,$4,$5) returining *`
+    var values=[name,age,weight,height,type];
+    pool.query(insertUsersQuery,values, (error,result)=>{
+        if(error)
+            res.end(error);
+    })
 });
 app.get('/users/:id', (req, res) => {
     var uid = req.params.id;
