@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>assignment2</title>
+    <link rel="stylesheet" href="./stylesheets/assignment2.css">
+</head>
+<body>
+    <form class="display" action="/database" method="get">
+        <button type="button" name="display" value="SHOW" placeholder=""></button>
+    </form>
+        <h1>Users</h1>
+        <form class="user" action="/adduser" method="post">
+            <input type="text" name="name" value="" placeholder="Name"> <br>
+            <input type="number" name="size" value="" placeholder="Size"> <br>
+            <input type="number" name="height" value="" placeholder="Height"> <br>
+            <input type="number" name="age" value="" placeholder="Age"> <br>
+            <input type="text" name="type" value="" placeholder="Type"> <br>
+            <input type="submit" name="sub" value="SEND TO SERVER" placeholder=""> <br>
+        </form>
+        <script type="text/javascript" src="./assignment2.js"></script>
+</body>
+</html>

@@ -28,9 +28,12 @@ app.get('/database', (req, res) => {
 });
 app.post('/adduser', (req, res) => {
     console.log("post request for /adduser");
-    var uname = req.body.uname;
+    var name = req.body.name;
     var age = req.body.age;
-    res.send(`username: ${uname}, age: ${age}`);
+    var size = req.body.size;
+    var height = req.body.height;
+    var type = req.body.type;
+    res.send(`username: ${name}, age: ${age}, size: ${size}, height: ${height}, type: ${type}`);
 });
 app.get('/users/:id', (req, res) => {
     var uid = req.params.id;
