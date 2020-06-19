@@ -35,7 +35,7 @@ app.post('/adduser', (req, res) => {
     var type = req.body.type;
     res.send(`name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
     console.log('pass');
-    var insertUsersQuery=`INSERT INTO usr (name, age, weight, height, type) VALUES (?,?,?,?,?)`
+    var insertUsersQuery=`INSERT INTO usr (name, age, weight, height, type) VALUES ($1,$2,$3,$4,$5)`
     var values=[name,age,weight,height,type];
     pool.query(insertUsersQuery,values, (error,result)=>{
         if(error)
