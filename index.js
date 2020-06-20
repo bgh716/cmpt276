@@ -28,7 +28,6 @@ app.get('/database', (req, res) => {
 });
 app.post('/adduser', (req, res) => {
     var uid = req.body.uid;
-    uid=string[uid];
     var name = req.body.name;
     var age = req.body.age;
     var weight = req.body.weight;
