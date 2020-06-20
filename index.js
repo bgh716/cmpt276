@@ -36,7 +36,7 @@ app.post('/adduser', (req, res) => {
     pool.query('SELECT * FROM usr WHERE id=$1', [uid], (error,result)=>{
         if(error)
             res.end(error);
-        else if(result[0] && result[0]['id']==uid){
+        else if(result.rows[0] && result.rows[0]['id']==uid){
             window.alert('id already taken');
         }
         else{
