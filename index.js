@@ -27,6 +27,7 @@ app.get('/database', (req, res) => {
 
 });
 app.post('/adduser', (req, res) => {
+    console.log('keep');
     var uid = req.body.uid;
     var name = req.body.name;
     var age = req.body.age;
@@ -35,7 +36,7 @@ app.post('/adduser', (req, res) => {
     var type = req.body.type;
     var values=[uid, name, age, weight, height, type];
     pool.query('SELECT * FROM usr WHERE id=$1', [uid], (error,result)=>{
-        console.log(result.rows);
+        console.log(result[0]);
         if(error)
             res.end(error);
         else if(result.rows[0] && result.rows[0]['id']==uid){
