@@ -21,6 +21,8 @@ app.get('/database', (req, res) => {
     pool.query(getUsersQuery, (error,result)=>{
         if(error)
             res.end(error);
+        var results = {'rows':result.rows}
+        res.render('pages/db', results);
     })
 
 });
@@ -35,9 +37,10 @@ app.post('/adduser', (req, res) => {
     pool.query("SELECT * FROM usr WHERE id=$1",[uid], (error,result)=>{
         console.log(error);
         console.log(result);
+        var results = {'rows':result.rows}
         if(error)
             res.end(error);
-        else if(result[0] && result[0]['id']==uid){
+        else if(results[0] && results[0]['id']==uid){
             window.alert('id already taken');
         }
         else{
