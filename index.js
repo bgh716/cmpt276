@@ -63,7 +63,7 @@ app.post('/deleteuser', (req, res) => {
 
 
 app.post('/edituser', (req, res) => {
-    var uid = req.body.uid;
+    var uid = req.params.uid;
     var name = req.body.name;
     var age = req.body.age;
     var weight = req.body.weight;
