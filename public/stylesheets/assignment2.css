@@ -1,0 +1,12 @@
+body {
+    text-align:center;
+}
+
+.container {
+    margin:auto;
+    display: inline-block;
+}
+
+.add, .delete, .edit {
+    float:left;
+}

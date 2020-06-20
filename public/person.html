@@ -7,31 +7,37 @@
 </head>
 <body>
     <form class="display" action="/database" method="get">
-        <input type="submit" name="display" value="SHOW">
+        <input type="submit" name="display" value="SHOW USERS">
     </form>
-    <h1>User</h1>
-    <form class="user" action="/adduser" method="post">
+    <h1>Users</h1>
+    <div class="container">
+    <form action="/adduser" method="post" class="add">
         <input type="text" name="uid" value="" placeholder="ID"> <br>
         <input type="text" name="name" value="" placeholder="Name"> <br>
         <input type="number" name="age" value="" placeholder="Age"> <br>
-        <input type="number" name="weight" value="" placeholder="Weight"> <br>
+        <input type="number" name="size" value="" placeholder="Size"> <br>
         <input type="number" name="height" value="" placeholder="Height"> <br>
-        <input type="text" name="type" value="" placeholder="Type"> <br>
+        <select type="text" name="type" placeholder="Type">
+            <option value="red">red</option>
+            <option value="blue">blue</option>
+            <option value="yellow">yellow</option>
+            <option value="green">green</option>
+        </select>
         <input type="submit" name="sub" value="ADD USER" placeholder=""> <br>
     </form>
-    <form action="/deleteuser" method="post">
+    <form action="/deleteuser" method="post" class="delete">
         <input type="text" name="uid" value="" placeholder="ID"> <br>
         <input type="submit" name="sub" value="DELETE USER" placeholder=""> <br>
     </form>
-    <form action="/edituser" method="post">
+    <form action="/edituser" method="post" class="edit">
         <input type="text" name="uid" value="" placeholder="ID"> <br>
         <input type="text" name="name" value="" placeholder="Name"> <br>
         <input type="number" name="age" value="" placeholder="Age"> <br>
-        <input type="number" name="weight" value="" placeholder="Weight"> <br>
+        <input type="number" name="size" value="" placeholder="Size"> <br>
         <input type="number" name="height" value="" placeholder="Height"> <br>
         <input type="text" name="type" value="" placeholder="Type"> <br>
         <input type="submit" name="sub" value="EDIT USER" placeholder=""> <br>
     </form>
-    <script type="text/javascript" src="./assignment2.js"></script>
+    </div>
 </body>
 </html>
