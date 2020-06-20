@@ -53,7 +53,7 @@ app.post('/adduser', (req, res) => {
 
 app.post('/deleteuser', (req, res) => {
     var uid = req.params.uid;
-    pool.query('DELETE * FROM usr WHERE id=$1',[uid], (error,result)=>{
+    pool.query('DELETE FROM usr WHERE id=$1',[uid], (error,result)=>{
         if(error)
             res.end(error);
         res.send(`USER ID: ${uid} HAS BEEN DELETED!`);
