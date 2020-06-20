@@ -27,21 +27,16 @@ app.get('/database', (req, res) => {
 
 });
 app.post('/adduser', (req, res) => {
-    console.log("post request for /adduser");
     var uid = req.body.uid;
     var name = req.body.name;
     var age = req.body.age;
     var weight = req.body.weight;
     var height = req.body.height;
     var type = req.body.type;
-    pool.query('SELECT * FROM usr WHERE id=$1', uid, (error,result)=>{
-        var results = {'rows':result.rows}
-        console.log(error);
-        console.log(results);
-
+    pool.query('SELECT * FROM usr WHERE id=$1', [uid], (error,result)=>{
         if(error)
             res.end(error);
-        else if(results[0] && results[0]['id']==uid){
+        else if(result[0] && result[0]['id']==uid){
             window.alert('id already taken');
         }
         else{
@@ -57,8 +52,8 @@ app.post('/adduser', (req, res) => {
 });
 
 app.post('/deleteuser', (req, res) => {
-    var uid = req.body.uid;
-    pool.query('DELETE * FROM usr WHERE id=$1',uid, (error,result)=>{
+    var uid = req.params.uid;
+    pool.query('DELETE * FROM usr WHERE id=$1',[uid], (error,result)=>{
         if(error)
             res.end(error);
         res.send(`USER ID: ${uid} HAS BEEN DELETED!`);
