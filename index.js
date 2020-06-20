@@ -37,7 +37,7 @@ app.post('/adduser', (req, res) => {
         console.log(result.rows);
         if(error)
             res.end(error);
-        else if(result.rows[0] && result.rows[0][0]==uid){
+        else if(result.rows[0] && result.rows[0]['id']==uid){
             window.alert('id already taken');
         }
         else{
