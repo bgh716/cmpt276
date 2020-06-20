@@ -56,7 +56,7 @@ app.post('/adduser', (req, res) => {
 
 });
 
-app.post('/deleteuser', (req, res) => {
+app.delete('/deleteuser', (req, res) => {
     var uid = req.body.uid;
     pool.query("DELETE * FROM usr WHERE id=$1",[uid], (error,result)=>{
         if(error)
