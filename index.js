@@ -28,25 +28,24 @@ app.get('/database', (req, res) => {
 });
 app.post('/adduser', (req, res) => {
     console.log("post request for /adduser");
-    var id = req.body.id;
+    var uid = req.body.id;
     var name = req.body.name;
     var age = req.body.age;
     var weight = req.body.weight;
     var height = req.body.height;
     var type = req.body.type;
     console.log('asd');
-    var searchUserQuery=`SELECT * FROM usr WHERE id=(`+id+`)`;
+    var searchUserQuery=`SELECT * FROM usr WHERE id=(`+uid+`)`;
     console.log('zxc');
     pool.query(searchUserQuery, (error,result)=>{
         if(error)
             res.end(error);
-        else if(result[0] && result[0]['id']==id){
+        else if(result[0] && result[0]['id']==uid){
             window.alert('id already taken');
         }
         else{
-            res.send(`id: ${id}, name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
-            var insertUsersQuery=`INSERT INTO usr (id, name, age, weight, height, type) VALUES (`+id+`,`+name+`,`+age+`,`+weight+`,`+height+`,`+type+`)`
-            var values=[name,age,weight,height,type];
+            res.send(`id: ${uid}, name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
+            var insertUsersQuery=`INSERT INTO usr (id, name, age, weight, height, type) VALUES (`+uid+`,`+name+`,`+age+`,`+weight+`,`+height+`,`+type+`)`
             pool.query(insertUsersQuery, (error,result)=>{
                 if(error)
                     res.end(error);
