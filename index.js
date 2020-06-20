@@ -45,15 +45,24 @@ app.post('/adduser', (req, res) => {
             window.alert('id already taken');
         }
         else{
-            res.send(`USER ID: ${uid}, HAS BEEN SUBMITTED!`);
             var insertUsersQuery=`INSERT INTO usr (id, name, age, weight, height, type) VALUES (`+uid+`,`+name+`,`+age+`,`+weight+`,`+height+`,`+type+`)`
             pool.query(insertUsersQuery, (error,result)=>{
                 if(error)
                     res.end(error);
+                res.send(`USER ID: ${uid} HAS BEEN SUBMITTED!`);
             })
         }
     })
 
+});
+
+app.post('/deleteuser', (req, res) => {
+    var uid = req.body.uid;
+    pool.query("DELETE * FROM usr WHERE id=$1",[uid], (error,result)=>{
+        if(error)
+            res.end(error);
+        res.send(`USER ID: ${uid} HAS BEEN DELETED!`);
+    })
 });
 
 
