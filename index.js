@@ -35,16 +35,17 @@ app.post('/adduser', (req, res) => {
     var height = req.body.height;
     var type = req.body.type;
     pool.query("SELECT * FROM usr WHERE id=$1",[uid], (error,result)=>{
-        console.log(error);
-        console.log(result);
         var results = {'rows':result.rows}
+        console.log(error);
+        console.log(results);
+
         if(error)
             res.end(error);
         else if(results[0] && results[0]['id']==uid){
             window.alert('id already taken');
         }
         else{
-            res.send(`id: ${uid}, name: ${name}, age: ${age}, weight: ${weight}, height: ${height}, type: ${type}`);
+            res.send(`USER ID: ${uid}, HAS BEEN SUBMITTED!`);
             var insertUsersQuery=`INSERT INTO usr (id, name, age, weight, height, type) VALUES (`+uid+`,`+name+`,`+age+`,`+weight+`,`+height+`,`+type+`)`
             pool.query(insertUsersQuery, (error,result)=>{
                 if(error)
