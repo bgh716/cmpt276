@@ -17,7 +17,6 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => res.render('pages/index'));
 app.get('/database', (req, res) => {
-    console.log('entering DB');
     var getUsersQuery='SELECT * FROM usr';
     pool.query(getUsersQuery, (error,result)=>{
         if(error)
@@ -25,10 +24,9 @@ app.get('/database', (req, res) => {
         var results = {'rows':result.rows}
         res.render('pages/db', results);
     })
-
 });
+
 app.post('/adduser', (req, res) => {
-    console.log('keep');
     var uid = req.body.uid;
     var name = req.body.name;
     var age = req.body.age;
@@ -37,7 +35,6 @@ app.post('/adduser', (req, res) => {
     var type = req.body.type;
     var values=[uid, name, age, weight, height, type];
     pool.query('SELECT * FROM usr WHERE id=$1', [uid], (error,result)=>{
-        console.log(result[0]);
         if(error)
             res.end(error);
         else if(result.rows[0] && result.rows[0]['id']==uid){
@@ -65,10 +62,19 @@ app.post('/deleteuser', (req, res) => {
 });
 
 
-app.get('/users/:id', (req, res) => {
-    var uid = req.params.id;
-    console.log(req.params.id);
-    //search the database using the uid
-    res.send("got it!");
+app.post('/edituser', (req, res) => {
+    var uid = req.body.uid;
+    var name = req.body.name;
+    var age = req.body.age;
+    var weight = req.body.weight;
+    var height = req.body.height;
+    var type = req.body.type;
+    var values=[name, age, weight, height, type];
+    var editUsersQuery='UPDATE usr SET name=$1, age=$2, weight=$3, height=$4, type=$5 where id=$6';
+    pool.query(editUsersQuery, values, [uid], (error,result)=>{
+        if(error)
+            res.end(error);
+        res.send(`USER ID: ${uid} HAS BEEN EDITED!`);
+    })
 });
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

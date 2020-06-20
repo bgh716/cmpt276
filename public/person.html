@@ -17,11 +17,20 @@
         <input type="number" name="weight" value="" placeholder="Weight"> <br>
         <input type="number" name="height" value="" placeholder="Height"> <br>
         <input type="text" name="type" value="" placeholder="Type"> <br>
-        <input type="submit" name="sub" value="SEND TO SERVER" placeholder=""> <br>
+        <input type="submit" name="sub" value="ADD USER" placeholder=""> <br>
     </form>
     <form action="/deleteuser" method="post">
         <input type="text" name="uid" value="" placeholder="ID"> <br>
-        <input type="submit" name="sub" value="SEND TO SERVER" placeholder=""> <br>
+        <input type="submit" name="sub" value="DELETE USER" placeholder=""> <br>
+    </form>
+    <form action="/edituser" method="post">
+        <input type="text" name="uid" value="" placeholder="ID"> <br>
+        <input type="text" name="name" value="" placeholder="Name"> <br>
+        <input type="number" name="age" value="" placeholder="Age"> <br>
+        <input type="number" name="weight" value="" placeholder="Weight"> <br>
+        <input type="number" name="height" value="" placeholder="Height"> <br>
+        <input type="text" name="type" value="" placeholder="Type"> <br>
+        <input type="submit" name="sub" value="EDIT USER" placeholder=""> <br>
     </form>
     <script type="text/javascript" src="./assignment2.js"></script>
 </body>
