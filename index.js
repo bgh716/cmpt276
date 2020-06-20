@@ -34,8 +34,7 @@ app.post('/adduser', (req, res) => {
     var weight = req.body.weight;
     var height = req.body.height;
     var type = req.body.type;
-    var searchUserQuery=`SELECT * FROM usr WHERE id=(`+uid+`)`;
-    pool.query(searchUserQuery, (error,result)=>{
+    pool.query("SELECT * FROM usr WHERE id=$1",[uid], (error,result)=>{
         if(error)
             res.end(error);
         else if(result[0] && result[0]['id']==uid){
