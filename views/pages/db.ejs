@@ -11,9 +11,6 @@
 <div class="container">
 <h2>Database Results</h2>
 <% rows.forEach(function(r) { %>
-<ul>
-		<li>ID:<%= r.id %> NAME:<%= r.name %> AGE:<%= r.age %> Size:<%= r.size %> Height:<%= r.height %> Type:<%= r.type %></li>
-</ul>
 
 <form class="table" action="/<%= r.id %>" method="get">
 			<input style="width:<%= r.size %>px; height:<%= r.height %>px; background-color:<%= r.type %>;" type="submit" id=<%= r.id %> value=<%= r.name %>>
